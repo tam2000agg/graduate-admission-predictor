@@ -1,0 +1,187 @@
+{% extends "material/base.html" %}
+{% block content %}
+
+<body background= "https://image.freepik.com/free-vector/abstract-background-with-a-watercolor-texture_1048-2144.jpg"> 
+    <style>
+        div.ex1
+        {
+           padding-top: 15px
+        }
+        </style>
+  
+
+        <div class="ex1">
+    <div class=" showcase container light-blue lighten-2 z-depth-5">
+    <div class="row ">
+      <!-- <div class=" col 15 m10 offset-ml center">
+          -->
+           <h2 class="center-align">Graduate Admissions</h2>
+           <p class="center-align">ML WEBAPP</p>
+           <a href="{{url_for('index')}}" class="btn btn-small light-blue  white-text waves-effect waves-dark "  onclick="M.toast({html: 'RESET THE PREDICTION'})" class="btn">RESET</a>
+           <a href="{{url_for('preview')}}" class="btn btn-small light-blue white-text waves-effect waves-dark right "> DATASET</a>
+           
+        
+        </div>
+    </div>
+    </div>
+</div>
+
+<section class="section section-signup">
+    <div class="container z-depth-5">
+        <div class="row">
+
+            <div class="col s12 m5">
+                    <div class="card-panel light-blue lighten-2 black-text text-darken-4 z-depth-0">
+                            <form action="{{ url_for('analyze')}}" method="POST">
+                                <div class="input-field">
+                                    <p>Graduate Record Exam Score </p>
+                                    <p class="range-field">
+                                      <input type="range" id="gre_scoreInput" name="gre_score" min="290" max="340" value="0" step="0.1" >
+                                      <label for="GRE Score"></label>
+                                    </p>
+                                </div>
+                                <div class="input-field">
+                                    <p>Test of English As Foreign Language Score</p>
+                                    <p class="range-field">
+                                        <input type="range" id="toefl_scoreInput" name="toefl_score" min="92" max="120" value="0" step="0.1">
+                                        <label for="TOEFL Score"></label>
+                                    </p>
+                                </div>
+                                <div class="input-field">
+                                    <p>University Rating</p>
+                                    <p class="range-field">
+                                        <input type="range" id="universityInput" name="university" min="1" max="5" value="0" step="1">
+                                        <label for="University Rating"></label>
+                                    </p>
+                                </div>
+                                <div class="input-field">
+                                    <p>Statement Of Purpose</p>
+                                        <p class="range-field">
+                                            <input type="range" id="sop_valueInput" name="sop_value" min="1" max="5" value="0" step="0.5">
+                                            <label for="SOP"></label>
+                                        </p>
+                                    </div>
+                                    <div class="input-field">
+                                        <p>Letter Of Recommendation</p>
+                                        <p class="range-field">
+                                            <input type="range" id="lor_valueInput" name="lor_value" min="1" max="5" value="0" step="0.5">
+                                            <label for="LOR"></label>
+                                        </p>
+                                    </div>
+                                    <div class="input-field">
+                                        <p>Commulative Grade Point Average</p>
+                                            <p class="range-field">
+                                                <input type="range" id="cgpa_valueInput" name="cgpa_value" min="6.8" max="9.92" value="0" step="0.2">
+                                                <label for="CGPA"></label>
+                                            </p>
+                                        </div>
+                                        <div class="input-field">
+                                            <p>Research</p>
+                                            <p class="range-field">
+                                                <input type="range" id="researchInput" name="research" min="0" max="1" value="0">
+                                                <label for="Research"></label>
+                                            </p>
+                                        </div>
+                                        
+                                        <label class="black-text">Select ML Algorithm</label>
+                                        <select  class="browser-default" id="role" name="model_choice">
+                                        <option value="" disabled selected>Choose Algorithm</option>
+                                        <option value="logitmodel">Linear Regression</option>
+                                        
+                                        
+                                </select>
+                                <input type="submit" value="Predict" class="waves-effect waves-black btn-flat">
+                                <input type="reset" value="clear" class="waves-effect waves-black btn-flat">
+                                        
+                                                      
+                </form>              
+            </div>
+        </div>
+        <div class="col s12 m4 offers">
+                <div class="card-panel light-blue lighten-2 black-text text-darken-4 z-depth-0">
+                 <p>GRE Score        : {{gre_score}}</p>
+                 <p>TOEFL Score      :{{toefl_score}}</p>
+                 <p>University Rating:{{university}}</p>
+                 <p>SOP              :{{sop_value}}</p>
+                 <p>LOR              :{{lor_value}}</p>
+                 <p>CGPA             :{{cgpa_value}}</p>
+                 <p>Research         :{{research}}</p>
+                  Linear Regression on {{clean_data}}
+                 </div>
+            </div>
+
+                 <div class="col s12 m4 offers">
+                <h5>Prediction</h5>
+                  <div class="collection" role="alert">
+                    <p  class="collection-item light-blue lighten-2">Chance of Admission on Rating of Scale 10 : {{ result_prediction }} </p>
+                </div>       				
+            </div>
+                    
+</div>
+</div>
+
+
+</section>
+<style>
+        div.ex2{
+            padding: 10px 10px
+        }
+        
+        </style>
+<div class="ex2">
+          
+        <!--<div id="gitter" class="fixed-action-btn"><a class="btn-floating btn-large light-blue" href="https://mail.google.com/mail/abhishek2017nitdgp@gmail.com" target="_blank"><i class="large material-icons">chat</i></a></div>
+-->
+<footer class="page-footer light-blue lighten-2 z-depth-5">
+        <div class="container light-blue lighten-2 ">
+          <div class="row">
+            <div class="col l6 s10">
+              <h5 class="white-text">@Tamanna Aggarwal</h5>
+              <p class="grey-text text-lighten-4">You can see the code of this project.</p>
+            </div>
+            <div class="col l4 offset-l2 s10">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="">CODE</a></li>
+                
+            </ul>
+            </div>
+          </div>
+        </div>
+    
+        </footer>
+    </body>
+          
+
+   {% endblock%}
+
+   {% block scripts %}
+   {{super()}}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <!-- <script type="text/javascript">
+       document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+  </script> -->
+  <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tap-target');
+    var instances = M.TapTarget.init(elems, options);
+  });
+// Show sideNav
+//$('.button-collapse').sideNav('show');
+      // Or with jQuery
+      $(document).ready(function(){
+    $('.tap-target').tapTarget();
+  });
+    
+        
+
+  </script>
+
+
+  
+  {% endblock %}
